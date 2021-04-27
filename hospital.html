@@ -104,9 +104,9 @@
 
     <script>
         const apiResult = [
-    {hospital: 'Calcutta Medical College', location: 'Kolkata', number: '03322897122/(033) 2284 4834(033) 2301 8101', details : ''},
-    {hospital: 'SSKM Hospital', location: 'Kolkata', number: '(033) 033 2223- 6026 / 6242/1615/9735/6180/9692/8922', details : ''},
-    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', location: 'Kolkata', number: '033 4017 1717', details : ''},
+    {hospital: 'Calcutta Medical College', district: 'Kolkata', location:'Beniapukur',  number: '03322897122/(033) 2284 4834(033) 2301 8101', details : ''},
+    {hospital: 'SSKM Hospital', district: 'Kolkata', location:'Bhowanipore', number: '(033) 033 2223- 6026 / 6242/1615/9735/6180/9692/8922', details : ''},
+    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : ''},
 ];
 
         const container = document.getElementById('accordion');
@@ -121,7 +121,7 @@
         <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
                         <div class="card-body">
                             <h5 class="card-title">Source : ${result.hospital}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}, District : ${result.district}</h6>
                             <p class="card-text">Phone Number : ${result.number}</p>
                             <p class="card-text">Details(If Any): ${result.details}</p>
                           </div>
