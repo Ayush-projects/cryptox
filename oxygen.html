@@ -127,7 +127,7 @@
         navigator.geolocation.getCurrentPosition(function(position){
           const apiurl = 'http://b5b8ae7b8b43.ngrok.io/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
-          fetch(apiurl).then(function (response) {
+          fetch(apiurl, {mode: 'no-cors'}).then(function (response) {
               // The API call was successful!
               console.log('success!', response);
             }).catch(function (err) {
