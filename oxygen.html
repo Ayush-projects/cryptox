@@ -117,10 +117,26 @@
 
     <script>
         const apiResult = [
-    {name: 'Medish (Sayan Das)', location: 'Kolkata', district : 'Kolkata', number: '7980636271', details : ''},
-    {name: 'Shankar Gas, GS Agarwal (Kolkata)', location: 'Kolkata', district : 'Kolkata', number: '9434051222', details : ''},
-    {name: 'Khalid Iqbal (Jamaat e Islame Hind)', location: 'Kolkata', district : 'Kolkata', number: '9051832211', details : ''},
+    {name: 'Medish (Sayan Das)', location_a: 'Kolkata', contact: '7980636271', comment : ''},
+    {name: 'Shankar Gas, GS Agarwal (Kolkata)', location_a: 'Kolkata', contact: '9434051222', comment : ''},
+    {name: 'Khalid Iqbal (Jamaat e Islame Hind)', location_a: 'Kolkata', contact: '9051832211', comment : ''},
 ];
+
+
+        navigator.geolocation.getCurrentPosition(function(position){
+          const apiurl = 'http://b5b8ae7b8b43.ngrok.io/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          console.log(apiurl);
+          fetch(apiurl).then(function (response) {
+              // The API call was successful!
+              console.log('success!', response);
+            }).catch(function (err) {
+              // There was an error
+              console.warn('Something went wrong.', err);
+            });
+
+        });
+
+        
 
         const container = document.getElementById('accordion');
 
@@ -134,7 +150,7 @@
         <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
                         <div class="card-body">
                             <h5 class="card-title">Source : ${result.name}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}, District : ${result.district}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
                             <p class="card-text">Phone Number : ${result.number}</p>
                             <p class="card-text">Details(If Any): ${result.details}</p>
                           </div>
