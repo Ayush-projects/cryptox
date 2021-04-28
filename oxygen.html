@@ -128,10 +128,8 @@
           const apiurl = 'http://b5b8ae7b8b43.ngrok.io/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
           fetch(apiurl, {mode: 'no-cors'}).then(function (response) {
-              // The API call was successful!
-              console.log('success!', response);
+              console.log('success!', response.json());
             }).catch(function (err) {
-              // There was an error
               console.warn('Something went wrong.', err);
             });
 
