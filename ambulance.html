@@ -116,16 +116,16 @@
 
     <script>
         const apiResult = [
-    {name: 'Jadavpur Merchants Association', location: 'Kolkata South', number: '9830048199, 9831298429, 2421-5079, 2421-8165', details : '', verified : 'True'},
-    {name: 'EMERGENCY AMBULANCE', location: 'Kolkata district', number: '102', details : '', verified : 'True'},
-    {name: 'Hindustan Ambulance Services', location: 'Kolkata EM Byepass-Saltlake-Newtown-Rajarhat', number: '9836909839/ 8420004004', details : '', verified : 'True'},
+    {name: 'Jadavpur Merchants Association', location_a: 'Kolkata South', comment: '9830048199, 9831298429, 2421-5079, 2421-8165', details : '', verified : 'true'},
+    {name: 'EMERGENCY AMBULANCE', location_a: 'Kolkata district', contact: '102', comment : '', verified : 'true'},
+    {name: 'Hindustan Ambulance Services', location_a: 'Kolkata EM Byepass-Saltlake-Newtown-Rajarhat', contact: '9836909839/ 8420004004', comment : '', verified : 'true'},
 ];
 
 
         navigator.geolocation.getCurrentPosition(function(position){
-          const apiurl = 'http://3fef39c1d1cb.ngrok.io/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          const apiurl = 'https://server-covid.herokuapp.com//api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
-          fetch(apiurl, mode: 'cors').then(function (response)  {
+          fetch(apiurl).then(function (response)  {
               return(response.json());
             }).then(function (resp) {
               console.log(resp);
@@ -142,7 +142,7 @@
         const card = document.createElement('div');
         card.classList = 'card-body';
 
-        if(result.verified == 'True'){
+        if(result.verified == 'true'){
         // Construct card content
 
         const content = `
@@ -157,9 +157,9 @@
                             </div>
                           </div> 
                             
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
-                            <p class="card-text">Phone Number : ${result.number}</p>
-                            <p class="card-text">Details(If Any): ${result.details}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                            <p class="card-text">Phone Number : ${result.contact}</p>
+                            <p class="card-text">Details(If Any): ${result.comment}</p>
                           </div>
 			        </div>`;
 
