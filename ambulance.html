@@ -4,7 +4,7 @@
   	<title>Covid-19 Resources</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -123,7 +123,7 @@
 
 
         navigator.geolocation.getCurrentPosition(function(position){
-          const apiurl = 'http://3fef39c1d1cb.ngrok.io/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          const apiurl = 'https://server-covid.herokuapp.com/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
           fetch(apiurl).then(function (response)  {
               return(response.json());
