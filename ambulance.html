@@ -123,7 +123,7 @@
 
 
         navigator.geolocation.getCurrentPosition(function(position){
-          const apiurl = 'https://server-covid.herokuapp.com//api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          const apiurl = 'https://server-covid.herokuapp.com/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
           fetch(apiurl).then(function (response)  {
               return(response.json());
