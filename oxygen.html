@@ -118,14 +118,14 @@
 
     <script>
         const apiResult = [
-    {name: 'Medish (Sayan Das)', location_a: 'Kolkata', contact: '7980636271', comment : ''},
-    {name: 'Shankar Gas, GS Agarwal (Kolkata)', location_a: 'Kolkata', contact: '9434051222', comment : ''},
-    {name: 'Khalid Iqbal (Jamaat e Islame Hind)', location_a: 'Kolkata', contact: '9051832211', comment : ''},
+    {name: 'Medish (Sayan Das)', location_a: 'Kolkata', contact: '7980636271', comment : '', verified : 'True'},
+    {name: 'Shankar Gas, GS Agarwal (Kolkata)', location_a: 'Kolkata', contact: '9434051222', comment : '', verified : 'True'},
+    {name: 'Khalid Iqbal (Jamaat e Islame Hind)', location_a: 'Kolkata', contact: '9051832211', comment : '', verified : 'True'},
 ];
 
 
         navigator.geolocation.getCurrentPosition(function(position){
-          const apiurl = 'http://b5b8ae7b8b43.ngrok.io/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          const apiurl = 'https://server-covid.herokuapp.com/api/ambulance/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
           fetch(apiurl, {mode: 'no-cors'}).then(function (response) {
               return(response.json());
@@ -144,21 +144,53 @@
         const card = document.createElement('div');
         card.classList = 'card-body';
 
+        if(result.verified == 'True'){
         // Construct card content
+
         const content = `
         <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
                         <div class="card-body">
-                            <h5 class="card-title">Source : ${result.name}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
-                            <p class="card-text">Phone Number : ${result.number}</p>
-                            <p class="card-text">Details(If Any): ${result.details}</p>
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.name}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-success">Verified</button>
+                            </div>
+                          </div> 
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                            <p class="card-text">Phone Number : ${result.contact}</p>
+                            <p class="card-text">Details(If Any): ${result.comment}</p>
                           </div>
-			        </div>
-
-        `;
+			        </div>`;
 
         // Append newyly created card element to the container
         container.innerHTML += content;
+        }else{
+                  // Construct card content
+
+        const content = `
+        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
+                        <div class="card-body" style = "margin-bottom : 10px;">
+                          <div class = "row" style = "margin-bottom : 50px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.name}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-secondary">Not Verified</button>
+                            </div>
+                          </div> 
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                            <p class="card-text">Phone Number : ${result.contact}</p>
+                            <p class="card-text">Details(If Any): ${result.comment}</p>
+                          </div>
+			        </div>`;
+
+        // Append newyly created card element to the container
+        container.innerHTML += content;
+            }
 })
     </script>
   </body>

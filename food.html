@@ -116,9 +116,9 @@
 
     <script>
         const apiResult = [
-    {name: 'Sramajibi canteen ', location: 'Jadavpur', number: '9674519255', details : ''},
-    {name: 'DietFixx', location: 'All over Kolkata ', number: '9830038142', details : ''},
-    {name: 'Calcutta cookbook ', location: 'Salt lake ', number: '9051339185', details : ''},
+    {name: 'Sramajibi canteen ', location: 'Jadavpur', number: '9674519255', details : '', verified : 'True'},
+    {name: 'DietFixx', location: 'All over Kolkata ', number: '9830038142', details : '', verified : 'True'},
+    {name: 'Calcutta cookbook ', location: 'Salt lake ', number: '9051339185', details : '', verified : 'True'},
 ];
 
         const container = document.getElementById('accordion');
@@ -128,21 +128,53 @@
         const card = document.createElement('div');
         card.classList = 'card-body';
 
+        if(result.verified == 'True'){
         // Construct card content
+
         const content = `
         <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
                         <div class="card-body">
-                            <h5 class="card-title">Source : ${result.name}</h5>
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.name}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-success">Verified</button>
+                            </div>
+                          </div> 
+                            
                             <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
                             <p class="card-text">Phone Number : ${result.number}</p>
                             <p class="card-text">Details(If Any): ${result.details}</p>
                           </div>
-			        </div>
-
-        `;
+			        </div>`;
 
         // Append newyly created card element to the container
         container.innerHTML += content;
+        }else{
+                  // Construct card content
+
+        const content = `
+        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
+                        <div class="card-body">
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.name}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-secondary">Not Verified</button>
+                            </div>
+                          </div> 
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
+                            <p class="card-text">Phone Number : ${result.number}</p>
+                            <p class="card-text">Details(If Any): ${result.details}</p>
+                          </div>
+			        </div>`;
+
+        // Append newyly created card element to the container
+        container.innerHTML += content;
+            }
 })
     </script>
   </body>

@@ -79,26 +79,6 @@
           <div class = "col-md-6 col-sm-12">
             <h2 class = "mb-04">Hospital Beds Supply</h2>
           </div>
-          <div class = "col-md-6 col-sm-12">
-            <form action  = "">
-
-                <div class = "col-md-3 col-sm-12 text-center" style = "float:right;">
-
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style = "width : 150px;">
-                      District
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">District 1</a>
-                      <a class="dropdown-item" href="#">District 2</a>
-                      <a class="dropdown-item" href="#">District 3</a>
-                    </div>
-                  </div>
-  
-                </div>
-
-            </form>
-          </div>
         </div>
 		
         
@@ -130,11 +110,11 @@
 
     <script>
         const apiResult = [
-    {hospital: 'Calcutta Medical College', district: 'Kolkata', location:'Beniapukur',  number: '03322897122/(033) 2284 4834(033) 2301 8101', details : ''},
-    {hospital: 'SSKM Hospital', district: 'Kolkata', location:'Bhowanipore', number: '(033) 033 2223- 6026 / 6242/1615/9735/6180/9692/8922', details : ''},
-    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : ''},
-    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : ''},
-    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : ''}
+    {hospital: 'Calcutta Medical College', district: 'Kolkata', location:'Beniapukur',  number: '03322897122/(033) 2284 4834(033) 2301 8101', details : '', verified : "False"},
+    {hospital: 'SSKM Hospital', district: 'Kolkata', location:'Bhowanipore', number: '(033) 033 2223- 6026 / 6242/1615/9735/6180/9692/8922', details : '', verified : "True"},
+    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : '', verified : "True"},
+    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : '', verified : "True"},
+    {hospital: 'Sri Aurobindo Seva Kendra(EEDF)', district: 'Kolkata', location:'Gariahat ', number: '033 4017 1717', details : '', verified : "True"}
 ];
 
         const container = document.getElementById('accordion');
@@ -144,21 +124,56 @@
         const card = document.createElement('div');
         card.classList = 'card-body';
 
+        if(result.verified == 'True'){
         // Construct card content
+
         const content = `
         <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
                         <div class="card-body">
-                            <h5 class="card-title">Source : ${result.hospital}</h5>
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.hospital}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-success">Verified</button>
+                            </div>
+                          </div> 
+                            
                             <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}, District : ${result.district}</h6>
                             <p class="card-text">Phone Number : ${result.number}</p>
                             <p class="card-text">Details(If Any): ${result.details}</p>
                           </div>
-			        </div>
-
-        `;
+			        </div>`;
 
         // Append newyly created card element to the container
         container.innerHTML += content;
+        }else{
+                  // Construct card content
+
+        const content = `
+        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
+                        <div class="card-body">
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.hospital}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-secondary">Not Verified</button>
+                            </div>
+                          </div> 
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}, District : ${result.district}</h6>
+                            <p class="card-text">Phone Number : ${result.number}</p>
+                            <p class="card-text">Details(If Any): ${result.details}</p>
+                          </div>
+			        </div>`;
+
+        // Append newyly created card element to the container
+        container.innerHTML += content;
+        }
+
+    
+
 })
     </script>
   </body>

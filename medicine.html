@@ -128,9 +128,9 @@
 
     <script>
         const apiResult = [
-    {name: 'Adeline Pharma (Kolkata)', location: 'Kolkata district', facility: 'Tocilizumab, Remdesivir', number: '9831041904, 9748472456, 03366120102', details : ''},
-    {name: 'North Bengal Medical Agency (Malda)', location: 'Malda district', facility: 'Tocilizumab', number: '94341401421', details : ''},
-    {name: 'Cipla Critical Sourav', location: 'Kolkata', facility: 'Tocilizumab', number: '9062059063', details : ''},
+    {name: 'Adeline Pharma (Kolkata)', location: 'Kolkata district', facility: 'Tocilizumab, Remdesivir', number: '9831041904, 9748472456, 03366120102', details : '', verified : 'True'},
+    {name: 'North Bengal Medical Agency (Malda)', location: 'Malda district', facility: 'Tocilizumab', number: '94341401421', details : '', verified : 'True'},
+    {name: 'Cipla Critical Sourav', location: 'Kolkata', facility: 'Tocilizumab', number: '9062059063', details : '', verified : 'True'},
 ];
 
         const container = document.getElementById('accordion');
@@ -140,22 +140,55 @@
         const card = document.createElement('div');
         card.classList = 'card-body';
 
+        if(result.verified == 'True'){
         // Construct card content
+
         const content = `
         <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
                         <div class="card-body">
-                            <h5 class="card-title">Source: ${result.name}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Facilty Provided : ${result.facility}</h6>
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.name}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-success">Verified</button>
+                            </div>
+                          </div> 
+                            
                             <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.facility}</h6>
                             <p class="card-text">Phone Number : ${result.number}</p>
                             <p class="card-text">Details(If Any): ${result.details}</p>
                           </div>
-			        </div>
-
-        `;
+			        </div>`;
 
         // Append newyly created card element to the container
         container.innerHTML += content;
+        }else{
+                  // Construct card content
+
+        const content = `
+        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
+                        <div class="card-body">
+                          <div class = "row" style = "margin-bottom : 10px;">
+                            <div class = "col-md-6 col-sm-6">
+                              <h5 class="card-title">Source : ${result.name}</h5>
+                            </div>
+                            <div class = "col-md-6 col-sm-12 text-center" >
+                              <button type="button" class="btn btn-secondary">Not Verified</button>
+                            </div>
+                          </div> 
+                            
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.facility}</h6>
+                            <p class="card-text">Phone Number : ${result.number}</p>
+                            <p class="card-text">Details(If Any): ${result.details}</p>
+                          </div>
+			        </div>`;
+
+        // Append newyly created card element to the container
+        container.innerHTML += content;
+            }
 })
     </script>
   </body>
