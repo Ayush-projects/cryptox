@@ -8412,9 +8412,8 @@ a[data-toggle="collapse"] {
 
 .goog-te-gadget-simple {
   background-color: #d4aceb !important;
-  border: 1px solid #d4aceb !important;
-  padding: 8px !important;
-  border-radius: 4px !important;
+
+  border-radius: 7px !important;
   font-size: 1rem !important;
   line-height: 2rem !important;
   display: inline-block;
