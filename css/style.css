@@ -8387,3 +8387,17 @@ a[data-toggle="collapse"] {
   margin: 1rem;
   }
 
+  .card-img-doctor {
+    color: #fff;
+    height: 5rem;
+    background: url(../images/doctor.png) center no-repeat;
+  }
+
+  .card-img-helpline {
+    color: #fff;
+    height: 5rem;
+    background: url(../images/helpline.png) center no-repeat;
+  }
+  
+  
+

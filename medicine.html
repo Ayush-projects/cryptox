@@ -22,33 +22,41 @@
         </div>
 				<div class="p-4 pt-5">
 		  		<h1><a href="index.html" class="logo">Covid-19 Resources</a></h1>
-                  <ul class="list-unstyled components mb-5">
-                    <li class="active">
-                      <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="oxygen.html">OXYGEN</a>
-                    </li>
-                    <li>
-                    <a href="hospital.html" >HOSPITAL</a>
-      
-                    </li>
-                    <li>
-                    <a href="medicine.html">MEDICINE</a>
-                    </li>
-                    <li>
-                    <a href="ambulance.html">AMBULANCE</a>
-                    </li>
-                    <li>
-                      <a href="plasma.html">PLASMA</a>
-                      </li>
-                      <li>
-                          <a href="testing.html">Covid Testing</a>
-                      </li>
-                      <li>
-                          <a href="food.html">Food</a>
-                      </li>
-                  </ul>
+          <ul class="list-unstyled components mb-5">
+            <li class="active">
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="oxygen.html">OXYGEN</a>
+            </li>
+            <li>
+            <a href="hospital.html" >HOSPITAL</a>
+
+            </li>
+            <li>
+              <a href="doctor.html" >DOCTORS</a>
+
+          </li>
+            <li>
+            <a href="#">MEDICINE</a>
+            </li>
+            <li>
+            <a href="ambulance.html">AMBULANCE</a>
+            </li>
+            <li>
+              <a href="plasma.html">PLASMA</a>
+              </li>
+              <li>
+                  <a href="testing.html">Covid Testing</a>
+              </li>
+              <li>
+                  <a href="food.html">FOOD</a>
+              </li>
+              <li>
+                  <a href="helpline.html" >HELPLINE</a>
+    
+              </li>
+          </ul>
 
 	        <div class="mb-5">
 				<h3 class="h6">Admin Login</h3>
@@ -107,69 +115,72 @@
     <script src="js/main.js"></script>
 
     <script>
-        const apiResult = [
-    {name: 'Adeline Pharma (Kolkata)', location: 'Kolkata district', facility: 'Tocilizumab, Remdesivir', number: '9831041904, 9748472456, 03366120102', details : '', verified : 'True'},
-    {name: 'North Bengal Medical Agency (Malda)', location: 'Malda district', facility: 'Tocilizumab', number: '94341401421', details : '', verified : 'True'},
-    {name: 'Cipla Critical Sourav', location: 'Kolkata', facility: 'Tocilizumab', number: '9062059063', details : '', verified : 'True'},
-];
+      navigator.geolocation.getCurrentPosition(function(position){
+          const apiurl = 'https://server-covid.herokuapp.com/api/medicine/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          console.log(apiurl);
+          fetch(apiurl).then(function (response)  {
+              return(response.json());
+            }).then(function (resp) {
+              
+              const container = document.getElementById('accordion');
 
-        const container = document.getElementById('accordion');
 
-        apiResult.forEach((result, idx) => {
-        // Create card element
-        const card = document.createElement('div');
-        card.classList = 'card-body';
+              resp.forEach((result, idx) => {
+              // Create card element
+              const card = document.createElement('div');
+              card.classList = 'card-body';
 
-        if(result.verified == 'True'){
-        // Construct card content
+              if(result.verified == 'true'){
+              // Construct card content
 
-        const content = `
-        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
-                        <div class="card-body">
-                          <div class = "row" style = "margin-bottom : 10px;">
-                            <div class = "col-md-6 col-sm-6">
-                              <h5 class="card-title">Source : ${result.name}</h5>
-                            </div>
-                            <div class = "col-md-6 col-sm-12 text-center" >
-                              <button type="button" class="btn btn-success">Verified</button>
-                            </div>
-                          </div> 
-                            
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.facility}</h6>
-                            <p class="card-text">Phone Number : ${result.number}</p>
-                            <p class="card-text">Details(If Any): ${result.details}</p>
-                          </div>
-			        </div>`;
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-success">Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
 
-        // Append newyly created card element to the container
-        container.innerHTML += content;
-        }else{
-                  // Construct card content
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+              }else{
+                        // Construct card content
 
-        const content = `
-        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
-                        <div class="card-body">
-                          <div class = "row" style = "margin-bottom : 10px;">
-                            <div class = "col-md-6 col-sm-6">
-                              <h5 class="card-title">Source : ${result.name}</h5>
-                            </div>
-                            <div class = "col-md-6 col-sm-12 text-center" >
-                              <button type="button" class="btn btn-secondary">Not Verified</button>
-                            </div>
-                          </div> 
-                            
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.facility}</h6>
-                            <p class="card-text">Phone Number : ${result.number}</p>
-                            <p class="card-text">Details(If Any): ${result.details}</p>
-                          </div>
-			        </div>`;
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 10px; ">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-secondary">Not Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
 
-        // Append newyly created card element to the container
-        container.innerHTML += content;
-            }
-})
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+                  }
+      })
+            });
+
+        });
     </script>
   </body>
 </html>
