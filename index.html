@@ -228,15 +228,15 @@
 			fetch(apiurl).then(function (response)  {
 				return(response.json());
 			  }).then(function (resp) {
-				document.getElementById('oxcount').innerHTML = int(resp['oxygen']);
-				document.getElementById('bdcount').innerHTML = int(resp['beds']);
-				document.getElementById('doccount').innerHTML = int(resp['doctor']);
-				document.getElementById('medcount').innerHTML = int(resp['medicine']);
-				document.getElementById('ambcount').innerHTML = int(resp['ambulance']);
-				document.getElementById('plasmacount').innerHTML = int(resp['plasma']);
-				document.getElementById('testcount').innerHTML = int(resp['testing']);
-				document.getElementById('foodcount').innerHTML = int(resp['food']);
-				document.getElementById('helplinecount').innerHTML = int(resp['helpline']);
+				document.getElementById('oxcount').innerHTML = resp['oxygen'];
+				document.getElementById('bdcount').innerHTML = resp['beds'];
+				document.getElementById('doccount').innerHTML = resp['doctor'];
+				document.getElementById('medcount').innerHTML = resp['medicine'];
+				document.getElementById('ambcount').innerHTML = resp['ambulance'];
+				document.getElementById('plasmacount').innerHTML = resp['plasma'];
+				document.getElementById('testcount').innerHTML = resp['testing'];
+				document.getElementById('foodcount').innerHTML = resp['food'];
+				document.getElementById('helplinecount').innerHTML = resp['helpline'];
 		  });
 	  </script>
 	
