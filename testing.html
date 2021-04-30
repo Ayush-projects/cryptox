@@ -105,7 +105,7 @@
 
     <script>
               navigator.geolocation.getCurrentPosition(function(position){
-          const apiurl = 'https://server-covid.herokuapp.com/api/oxygen/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          const apiurl = 'https://server-covid.herokuapp.com/api/testing/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
           fetch(apiurl).then(function (response)  {
               return(response.json());
@@ -172,7 +172,7 @@
         }, function(error){
           if (error.code == error.PERMISSION_DENIED){
 
-            const apiurl = 'https://server-covid.herokuapp.com/api/oxygen/22.4955+88.3709/testkey';
+            const apiurl = 'https://server-covid.herokuapp.com/api/testing/22.4955+88.3709/testkey';
           console.log(apiurl);
           fetch(apiurl).then(function (response)  {
               return(response.json());
