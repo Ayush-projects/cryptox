@@ -8412,7 +8412,6 @@ a[data-toggle="collapse"] {
 
 .goog-te-gadget-simple {
   background-color: #d4aceb !important;
-
   border-radius: 7px !important;
   font-size: 1rem !important;
   line-height: 2rem !important;
@@ -8428,12 +8427,6 @@ a[data-toggle="collapse"] {
 .goog-te-menu-value {
   color: #fff !important;
 }
-.goog-te-menu-value:before {
-  font-family: "Material Icons";
-  content: "";
-  font-size: 2rem;
-  vertical-align: -10px;
-}
 
 .goog-te-menu-value span:nth-child(5) {
   display: none;
@@ -8443,18 +8436,10 @@ a[data-toggle="collapse"] {
   border: none !important;
   font-family: "Material Icons";
 }
-.goog-te-menu-value span:nth-child(3):after {
-  font-family: "Material Icons";
-  content: "";
-  font-size: 1.5rem;
-  vertical-align: -6px;
-}
-
 .goog-te-gadget-icon {
   display : none;
   height: 32px !important;
   width: 32px !important;
-  margin-right: 8px !important;
   display: none;
 }
 
