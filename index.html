@@ -72,7 +72,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Oxygen</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "oxcount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-oxygen">
@@ -88,7 +88,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Hospital Bed </h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "bdcount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-hospital">
@@ -104,7 +104,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Doctor</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "doccount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-doctor">
@@ -120,7 +120,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Medicine </h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "medcount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-medicine">
@@ -136,7 +136,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Ambulance</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "ambcount"></p>
 							</div>
 							<div class="col-sm col-xs-12" >
 							  <div class="card-img-ambulance">
@@ -152,7 +152,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Plasma</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "plasmacount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-plasma">
@@ -168,7 +168,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Covid Testing</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "testcount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-test">
@@ -184,7 +184,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Food</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "foodcount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-food">
@@ -200,7 +200,7 @@
 						<div class="row">
 							<div class="col-sm col-xs-12">
 									<h6 class="card-subtitle mb-2 text-muted">Helpline</h6>
-									<p class="card-text">100</p>
+									<p class="card-text" id = "helplinecount"></p>
 							</div>
 							<div class="col-sm col-xs-12">
 							  <div class="card-img-helpline">
@@ -220,6 +220,25 @@
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+
+	<script>
+
+			const apiurl = 'https://server-covid.herokuapp.com/count';
+			console.log(apiurl);
+			fetch(apiurl).then(function (response)  {
+				return(response.json());
+			  }).then(function (resp) {
+				document.getElementById('oxcount').innerHTML = resp['oxygen'];
+				document.getElementById('bdcount').innerHTML = resp['beds'];
+				document.getElementById('doccount').innerHTML = resp['doctor'];
+				document.getElementById('medcount').innerHTML = resp['medicine'];
+				document.getElementById('ambcount').innerHTML = resp['ambulance'];
+				document.getElementById('plasmacount').innerHTML = resp['plasma'];
+				document.getElementById('testcount').innerHTML = resp['testing'];
+				document.getElementById('foodcount').innerHTML = resp['food'];
+				document.getElementById('helplinecount').innerHTML = resp['helpline'];
+		  });
+	  </script>
 	
 	
 <script type="text/javascript">
