@@ -104,68 +104,141 @@
     <script src="js/main.js"></script>
 
     <script>
-        const apiResult = [
-    {name: 'Anandaloke Sonoscan Centre Pvt. Ltd. Siliguri', location: 'siliguri', district:'Darjeeling district' , number: '7980636271', details : '+91353-2510010', verified : 'True'},
-    {name: 'Apollo Diagnostics New Town Kolkata, A Unit of Apollo Health and Lifestyle ltd, Kolkata', location: 'newtown', district:'Kolkata EM Byepass-Saltlake-Newtown-Rajarhat', number: '8017001136', details : '', verified : 'True'},
-    {name: 'Desun Reference Lab - A Unit of Desun Healthcare and Research Institute Limited, Kolkata', location: 'kasba', district:'Kolkata South', number: '9051715171', details : '', verified : 'True'},
-];
+              navigator.geolocation.getCurrentPosition(function(position){
+          const apiurl = 'https://server-covid.herokuapp.com/api/oxygen/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
+          console.log(apiurl);
+          fetch(apiurl).then(function (response)  {
+              return(response.json());
+            }).then(function (resp) {
+              
+              const container = document.getElementById('accordion');
 
-        const container = document.getElementById('accordion');
 
-        apiResult.forEach((result, idx) => {
-        // Create card element
-        const card = document.createElement('div');
-        card.classList = 'card-body';
+              resp.forEach((result, idx) => {
+              // Create card element
+              const card = document.createElement('div');
+              card.classList = 'card-body';
 
-        if(result.verified == 'True'){
-        // Construct card content
+              if(result.verified == 'true'){
+              // Construct card content
 
-        const content = `
-        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
-                        <div class="card-body">
-                          <div class = "row" style = "margin-bottom : 10px;">
-                            <div class = "col-md-6 col-sm-6">
-                              <h5 class="card-title">Source : ${result.name}</h5>
-                            </div>
-                            <div class = "col-md-6 col-sm-12 text-center" >
-                              <button type="button" class="btn btn-success">Verified</button>
-                              
-                            </div>
-                          </div> 
-                            
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}, District : ${result.district}</h6>
-                            <p class="card-text">Phone Number : ${result.number}</p>
-                            <p class="card-text">Details(If Any): ${result.details}</p>
-                          </div>
-			        </div>`;
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-success">Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
 
-        // Append newyly created card element to the container
-        container.innerHTML += content;
-        }else{
-                  // Construct card content
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+              }else{
+                        // Construct card content
 
-        const content = `
-        <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
-                        <div class="card-body">
-                          <div class = "row" style = "margin-bottom : 10px;">
-                            <div class = "col-md-6 col-sm-6">
-                              <h5 class="card-title">Source : ${result.hospital}</h5>
-                            </div>
-                            <div class = "col-md-6 col-sm-12 text-center" >
-                              <button type="button" class="btn btn-secondary">Not Verified</button>
-                            </div>
-                          </div> 
-                            
-                            <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location}, District : ${result.district}</h6>
-                            <p class="card-text">Phone Number : ${result.number}</p>
-                            <p class="card-text">Details(If Any): ${result.details}</p>
-                          </div>
-			        </div>`;
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-secondary">Not Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
 
-        // Append newyly created card element to the container
-        container.innerHTML += content;
-            }
-})
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+                  }
+                })
+            });
+
+        }, function(error){
+          if (error.code == error.PERMISSION_DENIED){
+
+            const apiurl = 'https://server-covid.herokuapp.com/api/oxygen/22.4955+88.3709/testkey';
+          console.log(apiurl);
+          fetch(apiurl).then(function (response)  {
+              return(response.json());
+            }).then(function (resp) {
+              
+              const container = document.getElementById('accordion');
+
+
+              resp.forEach((result, idx) => {
+              // Create card element
+              const card = document.createElement('div');
+              card.classList = 'card-body';
+
+              if(result.verified == 'true'){
+              // Construct card content
+
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-success">Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
+
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+              }else{
+                        // Construct card content
+
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-secondary">Not Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
+
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+                  }
+      })
+            });
+            
+          }
+             
+        });
     </script>
   </body>
 </html>

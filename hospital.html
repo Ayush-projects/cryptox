@@ -172,6 +172,75 @@
       })
             });
 
+        }, function(error){
+          if (error.code == error.PERMISSION_DENIED){
+
+            const apiurl = 'https://server-covid.herokuapp.com/api/beds/22.4955+88.3709/testkey';
+          console.log(apiurl);
+          fetch(apiurl).then(function (response)  {
+              return(response.json());
+            }).then(function (resp) {
+              
+              const container = document.getElementById('accordion');
+
+
+              resp.forEach((result, idx) => {
+              // Create card element
+              const card = document.createElement('div');
+              card.classList = 'card-body';
+
+              if(result.verified == 'true'){
+              // Construct card content
+
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-success">Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
+
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+              }else{
+                        // Construct card content
+
+              const content = `
+              <div class="card" style = "border-left: 2px solid #9357b3;margin-top: 10px;margin-bottom: 15px; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">
+                              <div class="card-body">
+                                <div class = "row" style = "margin-bottom : 10px;">
+                                  <div class = "col-md-6 col-sm-6">
+                                    <h5 class="card-title">Source : ${result.name}</h5>
+                                  </div>
+                                  <div class = "col-md-6 col-sm-12 text-center" >
+                                    <button type="button" class="btn btn-secondary">Not Verified</button>
+                                  </div>
+                                </div> 
+                                  
+                                  <h6 class="card-subtitle mb-2 text-muted">Location : ${result.location_a}</h6>
+                                  <p class="card-text">Phone Number : ${result.contact}</p>
+                                  <p class="card-text">Details(If Any): ${result.avl_comment}</p>
+                                </div>
+                    </div>`;
+
+              // Append newyly created card element to the container
+              container.innerHTML += content;
+                  }
+      })
+            });
+            
+          }
+             
         });
     </script>
   </body>
