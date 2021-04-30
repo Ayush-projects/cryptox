@@ -8344,17 +8344,20 @@ a[data-toggle="collapse"] {
   height: 5rem;
   background: url(../images/ambulance.png) center no-repeat;
 
+
 }
 .card-img-oxygen {
   color: #fff;
   height: 5rem;
   background: url(../images/oxygen-tank.png) center no-repeat;
+ 
 
 }
 .card-img-hospital {
   color: #fff;
   height: 5rem;
   background: url(../images/hospital.png) center no-repeat;
+  padding :0;
 
 }
 .card-img-medicine {
@@ -8362,17 +8365,20 @@ a[data-toggle="collapse"] {
   height: 5rem;
   background: url(../images/medicine.png) center no-repeat;
 
+
 }
 .card-img-plasma {
   color: #fff;
   height: 5rem;
   background: url(../images/blood.png) center no-repeat;
+  padding :0;
 
 }
 .card-img-test {
   color: #fff;
   height: 5rem;
   background: url(../images/test-tube.png) center no-repeat;
+
 
 }
 .card-img-food {
