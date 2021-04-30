@@ -8431,7 +8431,6 @@ a[data-toggle="collapse"] {
 .goog-te-menu-value:before {
   font-family: "Material Icons";
   content: "";
-  margin-right: 16px;
   font-size: 2rem;
   vertical-align: -10px;
 }
