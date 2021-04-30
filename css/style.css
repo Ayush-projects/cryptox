@@ -8451,7 +8451,7 @@ a[data-toggle="collapse"] {
 }
 
 .goog-te-gadget-icon {
-  background-position: 0px 0px;
+  display : none;
   height: 32px !important;
   width: 32px !important;
   margin-right: 8px !important;
