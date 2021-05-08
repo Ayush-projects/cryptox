@@ -56,6 +56,10 @@
                   <a href="helpline.html" >HELPLINE</a>
     
               </li>
+              <li>
+                <a href="form.html" >EMERGENCY FORM</a>
+          
+              </li>
               <li >
                 <div style="height: 10px; background-color: rgba(255, 255, 255, 0.6)"></div>
                 <h6 style = "display: inline; padding-top: 10px;">An initiative from the <b>Jadavpur University COVID 19 Resources Group</b>.<br></h6>
@@ -79,7 +83,7 @@
         <div id="accordion" class = "col-md-12 col-sm-12 col-xs-12">
   
         </div>
-		</div>
+      </div>
 		
         
       </div>
@@ -91,7 +95,9 @@
     <script src="js/main.js"></script>
 
     <script>
+
       navigator.geolocation.getCurrentPosition(function(position){
+        clearTimeout(location_timeout);
           const apiurl = 'https://server-covid.herokuapp.com/api/medicine/' + position.coords.latitude + '+' + position.coords.longitude + '/testkey';
           console.log(apiurl);
           fetch(apiurl).then(function (response)  {
@@ -157,6 +163,7 @@
             });
 
         }, function(error){
+          clearTimeout(location_timeout);
           if (error.code == error.PERMISSION_DENIED){
 
             const apiurl = 'https://server-covid.herokuapp.com/api/medicine/22.4955+88.3709/testkey';

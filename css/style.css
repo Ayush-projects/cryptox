@@ -8387,6 +8387,13 @@ a[data-toggle="collapse"] {
   background: url(../images/dish.png) center no-repeat;
 
 }
+
+.card-img-form {
+  color: #fff;
+  height: 5rem;
+  background: url(../images/google-forms.png) center no-repeat;
+
+}
 .card {
   padding: 1rem;
   border: 1px solid black;
